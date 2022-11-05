@@ -1,1 +1,3 @@
-# algoritmos-de-paginacao
+# Algoritmos de Paginção
+* FIFO
+* Algoritmo de Envelhecimento
