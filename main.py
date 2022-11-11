@@ -5,6 +5,7 @@ import numpy as np
 def fifo(molduras_na_memoria, referencia):
 	del molduras_na_memoria[0]
 	molduras_na_memoria.append(referencia)
+	return molduras_na_memoria
 
 
 def envelhecimento(molduras_na_memoria, referencia, historico_referencias):
@@ -29,6 +30,8 @@ def envelhecimento(molduras_na_memoria, referencia, historico_referencias):
 	del molduras_na_memoria[referenciada_mais_antigamente]
 	molduras_na_memoria.append(referencia)
 
+	return molduras_na_memoria
+
 
 def alocar_referencias(referencias, quantidade_molduras, algoritmo):
 	faltas_de_paginas = 0
@@ -44,9 +47,10 @@ def alocar_referencias(referencias, quantidade_molduras, algoritmo):
 			if (not referencia in molduras_na_memoria):
 				faltas_de_paginas += 1
 				if (algoritmo == "fifo"):
-					fifo(molduras_na_memoria, referencia)
+					molduras_na_memoria = fifo(molduras_na_memoria, referencia)
 				elif (algoritmo == "envelhecimento"):
-					envelhecimento(molduras_na_memoria, referencia, historico_referencias)
+					molduras_na_memoria = envelhecimento(molduras_na_memoria, referencia,
+					                                     historico_referencias)
 		historico_referencias.append(referencia)
 
 	return faltas_de_paginas
